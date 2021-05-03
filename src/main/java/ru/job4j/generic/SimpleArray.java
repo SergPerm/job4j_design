@@ -9,7 +9,7 @@ public class SimpleArray<T> implements Iterable {
     private int size;
 
     public SimpleArray(T[] array) {
-        this.array = array;
+        this.array = Arrays.copyOf(array, array.length);
         this.size = (int) Arrays.stream(array)
                 .filter(Objects::nonNull)
                 .count();
@@ -19,9 +19,21 @@ public class SimpleArray<T> implements Iterable {
      * возвращает итератор, предназначенный для обхода данной структуры.
      * @return - итератор для обхода данной структуры.
      */
+
     @Override
     public Iterator<T> iterator() {
-        return Arrays.stream(array).iterator();
+        return new Iterator<T>() {
+            int point = 0;
+            @Override
+            public boolean hasNext() {
+                return point < array.length;
+            }
+
+            @Override
+            public T next() {
+                return array[point++];
+            }
+        };
     }
 
     /**
