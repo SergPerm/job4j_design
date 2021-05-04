@@ -77,6 +77,6 @@ public class SimpleArrayTest {
         simple.add("two");
         simple.add("3");
         String tmp = simple.get(1);
-        assertEquals(tmp,"two");
+        assertEquals(tmp, "two");
     }
 }
