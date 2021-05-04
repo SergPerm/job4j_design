@@ -1,4 +1,4 @@
-package ru.job4j.generic;
+package ru.job4j.collection.list;
 
 import java.util.*;
 
