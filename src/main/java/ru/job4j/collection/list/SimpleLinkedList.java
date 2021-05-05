@@ -18,8 +18,6 @@ public class SimpleLinkedList<E> implements List<E> {
     public SimpleLinkedList() {
         this.head = null;
         this.tail = null;
-        this.size = 0;
-        this.modCount = 0;
     }
 
     /**
