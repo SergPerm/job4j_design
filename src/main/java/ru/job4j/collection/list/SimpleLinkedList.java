@@ -57,6 +57,17 @@ public class SimpleLinkedList<E> implements List<E> {
         return current.value;
     }
 
+    @Override
+    public E deleteFirst() {
+        Node<E> current = head;
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+        head = current.next;
+        current.next = null;
+        return current.value;
+    }
+
     /**
      * возвращает итератор для прохода по списку
      * @return - итератор.

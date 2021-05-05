@@ -7,6 +7,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class SimpleLinkedListTest {
@@ -16,8 +17,8 @@ public class SimpleLinkedListTest {
         List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
-        assertThat(list.get(0), Is.is(1));
-        assertThat(list.get(1), Is.is(2));
+        assertThat(list.get(0), is(1));
+        assertThat(list.get(1), is(2));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -47,4 +48,27 @@ public class SimpleLinkedListTest {
         first.next();
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void whenDeleteFirst() {
+        List<Integer> linked = new SimpleLinkedList<>();
+        linked.add(1);
+        linked.deleteFirst();
+        linked.iterator().next();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void whenDeleteEmptyLinked() {
+        List<Integer> linked = new SimpleLinkedList<>();
+        linked.deleteFirst();
+    }
+
+    @Test
+    public void whenMultiDelete() {
+        List<Integer> linked = new SimpleLinkedList<>();
+        linked.add(1);
+        linked.add(2);
+        assertThat(linked.deleteFirst(), is(1));
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(2));
+    }
 }
