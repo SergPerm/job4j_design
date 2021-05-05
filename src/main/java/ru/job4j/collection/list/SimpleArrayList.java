@@ -9,14 +9,10 @@ public class SimpleArrayList<T> implements Iterable {
 
     public SimpleArrayList() {
         this.array = new Object[5];
-        this.size = 0;
-        modCount = 0;
     }
 
     public SimpleArrayList(int length) {
         this.array = new Object[length];
-        this.size = 0;
-        modCount = 0;
     }
 
     /**
@@ -52,9 +48,7 @@ public class SimpleArrayList<T> implements Iterable {
      * @param model -  значение элемента;
      */
     public void add(T model) {
-        if (size == array.length) {
-            array = Arrays.copyOf(array, (int) array.length * 2);
-        }
+        isNeedExtend(2);
         array[size++] = model;
         modCount++;
     }
@@ -68,6 +62,7 @@ public class SimpleArrayList<T> implements Iterable {
      public void set(int index, T model) {
          Objects.checkIndex(index, size);
          array[index] = model;
+         modCount++;
      }
 
     /**
@@ -93,5 +88,15 @@ public class SimpleArrayList<T> implements Iterable {
     public T get(int index) {
         Objects.checkIndex(index, size);
         return (T) array[index];
+    }
+
+    /**
+     * метод проверяет необходимость увеличения размера массива,
+     * при необходимости увеличивает массив в n раз.
+     */
+    private void isNeedExtend(int n) {
+        if (size == array.length) {
+            array = Arrays.copyOf(array, (int) array.length * n);
+        }
     }
 }
