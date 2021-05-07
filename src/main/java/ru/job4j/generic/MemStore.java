@@ -2,6 +2,7 @@ package ru.job4j.generic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public final class MemStore<T extends Base> implements Store<T> {
 
@@ -14,7 +15,8 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        mem.set(findIndexById(id), model);
+        int tmp = findIndexById(id);
+        mem.set(tmp, model);
         return true;
     }
 
@@ -31,7 +33,8 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        mem.remove(findIndexById(id));
+        int tmp = findIndexById(id);
+        mem.remove(tmp);
         return true;
     }
 
@@ -43,7 +46,8 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        return mem.get(findIndexById(id));
+        int tmp = findIndexById(id);
+        return mem.get(tmp);
     }
 //
 //    @Override
@@ -58,13 +62,17 @@ public final class MemStore<T extends Base> implements Store<T> {
 //        return tmp;
 //    }
 
-    private int findIndexById(String id) {
+    private int findIndexById(String id) throws NoSuchElementException {
         int tmp = -1;
         for (int i = 0; i < mem.size(); i++) {
             if (mem.get(i).getId().equals(id)) {
                 tmp = i;
                 break;
             }
+        }
+        if (tmp == -1) {
+            System.out.println("нет элемента с таким id");
+            throw new NoSuchElementException("no such id");
         }
         return tmp;
     }
