@@ -16,8 +16,11 @@ public final class MemStore<T extends Base> implements Store<T> {
     @Override
     public boolean replace(String id, T model) {
         int tmp = findIndexById(id);
-        mem.set(tmp, model);
-        return true;
+        if (tmp != -1) {
+            mem.set(tmp, model);
+            return true;
+        }
+        return false;
     }
 
 //    @Override
@@ -34,8 +37,11 @@ public final class MemStore<T extends Base> implements Store<T> {
     @Override
     public boolean delete(String id) {
         int tmp = findIndexById(id);
-        mem.remove(tmp);
-        return true;
+        if (tmp != -1) {
+            mem.remove(tmp);
+            return true;
+        }
+        return false;
     }
 
 //    @Override
@@ -47,7 +53,10 @@ public final class MemStore<T extends Base> implements Store<T> {
     @Override
     public T findById(String id) {
         int tmp = findIndexById(id);
-        return mem.get(tmp);
+        if (tmp != -1) {
+            return mem.get(tmp);
+        }
+        return null;
     }
 //
 //    @Override
@@ -70,10 +79,10 @@ public final class MemStore<T extends Base> implements Store<T> {
                 break;
             }
         }
-        if (tmp == -1) {
-            System.out.println("нет элемента с таким id");
-            throw new NoSuchElementException("no such id");
-        }
+//        if (tmp == -1) {
+//            System.out.println("нет элемента с таким id");
+//            throw new NoSuchElementException("no such id");
+//        }
         return tmp;
     }
 
