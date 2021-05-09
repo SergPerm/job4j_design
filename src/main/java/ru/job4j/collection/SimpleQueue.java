@@ -11,10 +11,10 @@ public class SimpleQueue<T> {
     }
 
     public T poll() {
-        if (out.getSize() == 0 && in.getSize() == 0) {
+        if (out.isEmpty() && in.isEmpty()) {
             throw new NoSuchElementException();
-        } else if (out.getSize() == 0 && in.getSize() != 0) {
-            while (in.getSize() > 0) {
+        } else if (out.isEmpty() && !in.isEmpty()) {
+            while (!in.isEmpty()) {
                 out.push(in.pop());
             }
             return out.pop();

@@ -1,7 +1,6 @@
 package ru.job4j.iterator;
 
 import org.hamcrest.core.Is;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
