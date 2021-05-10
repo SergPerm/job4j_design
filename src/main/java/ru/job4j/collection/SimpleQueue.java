@@ -13,13 +13,12 @@ public class SimpleQueue<T> {
     public T poll() {
         if (out.isEmpty() && in.isEmpty()) {
             throw new NoSuchElementException();
-        } else if (out.isEmpty() && !in.isEmpty()) {
+        }
+        if (out.isEmpty() && !in.isEmpty()) {
             while (!in.isEmpty()) {
                 out.push(in.pop());
             }
-            return out.pop();
-        } else {
-            return out.pop();
         }
+        return out.pop();
     }
 }
