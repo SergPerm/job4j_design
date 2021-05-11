@@ -3,7 +3,7 @@ package ru.job4j.collection.set;
 import ru.job4j.generic.SimpleArray;
 
 import java.util.Iterator;
-import java.util.Optional;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Set<T> {
     private final SimpleArray<T> simpSet = new SimpleArray<>();
@@ -19,15 +19,8 @@ public class SimpleSet<T> implements Set<T> {
 
     @Override
     public boolean contains(T value) {
-        Iterator<T> it = simpSet.iterator();
-        Optional<T> val = Optional.ofNullable(value);
-        while (it.hasNext()) {
-            T t = it.next();
-            if (t != null) {
-                if (t.equals(value)) {
-                    return true;
-                }
-            } else if (val.isEmpty()) {
+        for (T t : this) {
+            if (Objects.equals(t, value)) {
                 return true;
             }
         }
@@ -36,18 +29,6 @@ public class SimpleSet<T> implements Set<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<>() {
-            int point = 0;
-
-            @Override
-            public boolean hasNext() {
-                return point < simpSet.getSize();
-            }
-
-            @Override
-            public T next() {
-                return simpSet.get(point++);
-            }
-        };
+        return simpSet.iterator();
     }
 }
