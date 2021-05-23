@@ -68,14 +68,26 @@ public class SimpleMapTest {
     }
 
     @Test(expected = ConcurrentModificationException.class)
-    public void iterator() {
+    public void whenIteratorHasTroubleThenException() {
         SimpleMap<Integer, String> simpleMap = new SimpleMap<>();
         simpleMap.put(1, "petr");
         simpleMap.put(2, "serg");
-        Iterator it = simpleMap.iterator();
+        Iterator<Integer> it = simpleMap.iterator();
         it.hasNext();
         simpleMap.put(3, "alex");
         it.hasNext();
+    }
 
+    @Test
+    public void whenHave2ElementThenIteratorGive2True() {
+        SimpleMap<Integer, String> simpleMap = new SimpleMap<>();
+        simpleMap.put(1, "petr");
+        simpleMap.put(2, "serg");
+        Iterator<Integer> it = simpleMap.iterator();
+        assertTrue(it.hasNext());
+        it.next();
+        assertTrue(it.hasNext());
+        it.next();
+        assertFalse(it.hasNext());
     }
 }

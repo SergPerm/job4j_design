@@ -39,7 +39,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public V get(K key) {
         int index = indexForKey(key);
         MapEntry res = table[index];
-        return res != null ? (V) res.value : null;
+        if (res != null && res.key.equals(key)) {
+            return (V) res.value;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -67,12 +71,23 @@ public class SimpleMap<K, V> implements Map<K, V> {
             final MapEntry<K, V>[] oldTable = table;
             final int expectedModCount = modCount;
             private int point = 0;
+
             @Override
             public boolean hasNext() {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return point < oldTable.length;
+                int pointNext = point;
+                boolean result = false;
+                while (pointNext < oldTable.length) {
+                    if (oldTable[pointNext++] != null) {
+                        result = true;
+                        point = pointNext - 1;
+                        break;
+                    }
+                }
+                return result;
+
             }
 
             @Override
