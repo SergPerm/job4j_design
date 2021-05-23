@@ -117,10 +117,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
         MapEntry<K, V>[] oldTable = table;
         table = new MapEntry[capacity];
         for (MapEntry<K, V> mE : oldTable) {
-            if (mE == null) {
-                continue;
+            if (mE != null) {
+                put(mE.key, mE.value);
             }
-            put(mE.key, mE.value);
         }
         modCount++;
     }
