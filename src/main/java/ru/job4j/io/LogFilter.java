@@ -26,7 +26,7 @@ public class LogFilter {
     public static void save(List<String> list, String file) {
         try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(file)))) {
             for (String str : list) {
-                writer.write(str + System.lineSeparator());
+                writer.println(str);
             }
         } catch (Exception e) {
             e.printStackTrace();
