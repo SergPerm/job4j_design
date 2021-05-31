@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -28,17 +29,14 @@ public class Config {
                 line = reader.readLine();
                 if (!line.isEmpty() && !line.startsWith("#")) {
                     String[] keyVal = line.split("=");
-                    if (keyVal.length == 1)  {
+                    if (keyVal.length == 1) {
                         throw new IllegalArgumentException("wrong configuration");
                     }
                     values.put(keyVal[0], keyVal[1]);
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            if (e.getClass() == IllegalArgumentException.class) {
-                throw new IllegalArgumentException(e.getMessage());
-            }
         }
     }
 
