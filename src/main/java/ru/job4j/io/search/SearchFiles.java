@@ -1,4 +1,4 @@
-package ru.job4j.io;
+package ru.job4j.io.search;
 
 import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
