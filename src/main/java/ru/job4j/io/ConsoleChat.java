@@ -33,7 +33,7 @@ public class ConsoleChat {
     }
 
     public void run() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true));
+        try (PrintWriter pw = new PrintWriter(new FileWriter(path));
              Scanner scanner = new Scanner(System.in)) {
             boolean answer = true;
             String message;
