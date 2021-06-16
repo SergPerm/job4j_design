@@ -1,7 +1,6 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,26 +32,30 @@ public class ConsoleChat {
     }
 
     public void run() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path));
-             Scanner scanner = new Scanner(System.in)) {
-            boolean answer = true;
-            String message;
-            String replay;
-            do {
-                message = scanner.nextLine();
-                if (message.equals(STOP)) {
-                    answer = false;
-                }
-                if (message.equals(CONTINUE)) {
-                    answer = true;
-                }
-                pw.println(message);
-                if (answer) {
-                    replay = answersBot.get((int) (Math.random() * (countOfBotAnswer - 1)));
-                    System.out.println(replay);
-                    pw.println(replay);
-                }
-            } while (!message.equals(OUT));
+        List<String> log = new ArrayList<>();
+        this.readBotAnswer();
+        Scanner scanner = new Scanner(System.in);
+        boolean answer = true;
+        String message;
+        String replay;
+        do {
+            message = scanner.nextLine();
+            if (message.equals(STOP)) {
+                answer = false;
+            }
+            if (message.equals(CONTINUE)) {
+                answer = true;
+            }
+            log.add(message);
+            if (answer) {
+                replay = answersBot.get((int) (Math.random() * (countOfBotAnswer - 1)));
+                System.out.println(replay);
+                log.add(replay);
+            }
+        } while (!message.equals(OUT));
+        scanner.close();
+        try (PrintWriter pw = new PrintWriter(new FileWriter(path))) {
+            pw.println(log);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,7 +64,6 @@ public class ConsoleChat {
     public static void main(String[] args) {
         ConsoleChat cc = new ConsoleChat("C:\\projects\\job4j_design\\resultChat.txt",
                 "C:\\projects\\job4j_design\\sourсeChat");
-        cc.readBotAnswer();
         cc.run();
     }
 }
