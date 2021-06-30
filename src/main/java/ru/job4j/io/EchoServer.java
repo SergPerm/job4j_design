@@ -12,18 +12,35 @@ public class EchoServer {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
-                Boolean exit = false;
+                String command = "unknown command";
+                String answer = null;
+                boolean exit = false;
                 try (OutputStream out = socket.getOutputStream();
                     BufferedReader in = new BufferedReader(
                             new InputStreamReader(socket.getInputStream()))) {
                     for (String str = in.readLine();
                          str != null && !str.isEmpty(); str = in.readLine()) {
                         System.out.println(str);
-                        if (str.contains("msg=Bye")) {
-                            exit = true;
+                        if (str.contains("msg=")) {
+                            command = str.split("msg=")[1].split(" ")[0];
                         }
                     }
-                    out.write("HTTP/1.1 200 OK\r\n".getBytes());
+                    switch (command) {
+                        case "Hello" -> {
+                            answer = "Hello.";
+                        }
+                        case "Exit" -> {
+                            exit = true;
+                        }
+                        case "Any" -> {
+                            answer = "What?";
+                        }
+                        default -> throw new IllegalStateException("Unexpected value: " + command);
+                    }
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                    if (answer != null) {
+                        out.write(answer.getBytes());
+                    }
                     if (exit) {
                         server.close();
                     }
