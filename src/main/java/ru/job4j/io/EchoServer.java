@@ -52,7 +52,6 @@ public class EchoServer {
                 }
             }
         } catch (Exception e) {
-//            e.printStackTrace();
             LOG.error("Exception IO", e);
         }
     }
