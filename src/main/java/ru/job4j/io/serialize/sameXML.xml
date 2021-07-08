@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<person>
+    <name>Mary</name>
+    <age>43</age>
+    <contact zipCode="614111" phone="8(902)80-82-651"/>
+    <isSpeakEnglish>true</isSpeakEnglish>
+    <gender>FEMALE</gender>
+    <statuses>
+        <status>worker</status>
+        <status>married</status>
+    </statuses>
+</person>
