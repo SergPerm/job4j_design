@@ -42,6 +42,30 @@ public class Person {
         this.statuses = statuses;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public boolean isSpeakEnglish() {
+        return isSpeakEnglish;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
+    }
+
     @Override
     public String toString() {
         return "Person{"
