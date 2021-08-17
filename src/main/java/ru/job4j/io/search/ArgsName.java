@@ -1,4 +1,4 @@
-package ru.job4j.io;
+package ru.job4j.io.search;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,8 @@ public class ArgsName {
             if (tmp.length < 2) {
                 throw new IllegalArgumentException(String.format("Wrong parameter format : %s", arg));
             }
-            values.put(tmp[0].substring(1), tmp[1]);
+            values.put(tmp[0], tmp[1]);
+//            values.put(tmp[0].substring(1), tmp[1]);
         }
     }
 
