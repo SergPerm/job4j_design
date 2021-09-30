@@ -1,6 +1,6 @@
 package ru.job4j.io;
 
-import ru.job4j.io.search.Search;
+import ru.job4j.io.search.*;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -44,7 +44,7 @@ public class Zip {
         ArgsName names = ArgsName.of(args);
         Path start = Paths.get(names.get("d"));
         Predicate<Path> condition = p -> !p.toFile().getName().endsWith(names.get("e"));
-        List<File> sources = Search.search(start, condition).stream().map(Path::toFile).collect(Collectors.toList());
+        List<File> sources = Find.search(start, condition).stream().map(Path::toFile).collect(Collectors.toList());
         new Zip().packFiles(sources, Paths.get(names.get("o")).toFile());
     }
 }
