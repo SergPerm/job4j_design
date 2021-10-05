@@ -10,7 +10,7 @@ public class TableEditor implements AutoCloseable {
 
     private Connection connection;
 
-    private Properties properties;
+    private final Properties properties;
 
     public TableEditor(Properties properties) {
         this.properties = properties;
@@ -40,60 +40,60 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public void createTable(String tableName) throws Exception {
+    private void exectStatement(String sql) {
         try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "create table if not exists %s(%s, %s);",
-                    tableName,
-                    "id serial primary key",
-                    "name text"
-            );
             statement.execute(sql);
-            System.out.println(getTableScheme(connection, tableName));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public void dropTable(String tableName) throws Exception {
+    private void exectStatement(String sql, String tableName) {
         try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "drop table if exists %s;",
-                    tableName
-            );
             statement.execute(sql);
+            System.out.println(getTableScheme(connection, tableName)); //временная строка
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
-    public void addColumn(String tableName, String columnName, String type) throws Exception {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "ALTER TABLE IF EXISTS %s ADD COLUMN IF NOT EXISTS %s %s;",
-                    tableName, columnName, type
-            );
-            statement.execute(sql);
-            System.out.println(getTableScheme(connection, tableName));
-        }
+    public void createTable(String tableName) {
+        String sql = String.format(
+                "create table if not exists %s();",
+                tableName
+        );
+        exectStatement(sql, tableName);
     }
 
-    public void dropColumn(String tableName, String columnName) throws Exception {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "ALTER TABLE IF EXISTS %s DROP COLUMN %s;",
-                    tableName, columnName
-            );
-            statement.execute(sql);
-            System.out.println(getTableScheme(connection, tableName));
-        }
+    public void dropTable(String tableName) {
+        String sql = String.format(
+                "drop table if exists %s;",
+                tableName
+        );
+        exectStatement(sql);
     }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "ALTER TABLE IF EXISTS %s RENAME COLUMN %s TO %s;",
-                    tableName, columnName, newColumnName
-            );
-            statement.execute(sql);
-            System.out.println(getTableScheme(connection, tableName));
-        }
+    public void addColumn(String tableName, String columnName, String type) {
+        String sql = String.format(
+                "ALTER TABLE IF EXISTS %s ADD COLUMN IF NOT EXISTS %s %s;",
+                tableName, columnName, type
+        );
+        exectStatement(sql, tableName);
+    }
+
+    public void dropColumn(String tableName, String columnName) {
+        String sql = String.format(
+                "ALTER TABLE IF EXISTS %s DROP COLUMN %s;",
+                tableName, columnName
+        );
+        exectStatement(sql, tableName);
+    }
+
+    public void renameColumn(String tableName, String columnName, String newColumnName) {
+        String sql = String.format(
+                "ALTER TABLE IF EXISTS %s RENAME COLUMN %s TO %s;",
+                tableName, columnName, newColumnName
+        );
+        exectStatement(sql, tableName);
     }
 
 
