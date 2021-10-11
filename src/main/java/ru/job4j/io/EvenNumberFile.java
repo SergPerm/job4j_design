@@ -21,7 +21,6 @@ public class EvenNumberFile {
                 }
 
             }
-//            System.out.println(text);
         } catch (Exception e) {
             e.printStackTrace();
         }

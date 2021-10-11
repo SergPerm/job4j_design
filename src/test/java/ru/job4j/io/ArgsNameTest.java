@@ -3,8 +3,6 @@ package ru.job4j.io;
 import org.junit.Test;
 import ru.job4j.io.search.ArgsName;
 
-public class ArgsNameTest {
-
 /**
  *   Test
  *   public void whenGetFirst() {
@@ -18,7 +16,8 @@ public class ArgsNameTest {
  *   public void whenWrongSomeArgument() {
  *       ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx="});
  *   }
- **/
+ */
+public class ArgsNameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void whenGetNotExist() {

@@ -60,9 +60,9 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config conf = new Config("./data/app.properties");
+        Config conf = new Config("./data/app1.properties");
         conf.load();
         System.out.println(conf.value("hibernate.connection.driver_class"));
-        System.out.println(new Config("./data/app.properties"));
+        System.out.println(new Config("./data/app1.properties"));
     }
 }

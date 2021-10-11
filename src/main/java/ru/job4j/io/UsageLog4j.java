@@ -17,13 +17,15 @@ public class UsageLog4j {
         double salary = 250000.56;
         long skillLevel = 100500L;
         byte age = 45;
-
-//        LOG.trace("trace message");
+/*
+  для проверки оставляли только один уровень логирования
+ */
+        LOG.trace("trace message");
         LOG.debug("User name: {}, sex: {}, age {}, height: {}, weight: {}, "
                 + "is a programmer: {}, skillLevel {}, have friends {}, have salary : {}", name,
                 sex, age, height, weight, isProgrammer, skillLevel, countFriends, salary);
-//        LOG.info("info message");
-//        LOG.warn("warn message");
-//        LOG.error("error message");
+        LOG.info("info message");
+        LOG.warn("warn message");
+        LOG.error("error message");
     }
 }

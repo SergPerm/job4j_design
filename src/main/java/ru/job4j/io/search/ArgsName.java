@@ -22,7 +22,6 @@ public class ArgsName {
                 throw new IllegalArgumentException(String.format("Wrong parameter format : %s", arg));
             }
             values.put(tmp[0], tmp[1]);
-//            values.put(tmp[0].substring(1), tmp[1]);
         }
     }
 

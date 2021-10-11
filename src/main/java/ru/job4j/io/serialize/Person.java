@@ -1,7 +1,7 @@
 package ru.job4j.io.serialize;
 
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -82,18 +82,23 @@ public class Person {
         Person person = new Person("Serg", 45,
                 new Contact(614111, "8(902)47-44-350"),
                 true, Sex.MALE, "student", "married");
-//        final Gson gson = new GsonBuilder().create();
-//        System.out.println(gson.toJson(person));
-//
-//        final String personJson = "{"
-//                + "\"name\":\"Mary\","
-//                + "\"age\":43,"
-//                + "\"contact\":{\"zipCode\":614111,\"phone\":\"8(902)80-82-651\"},"
-//                + "\"isSpeakEnglish\":true,"
-//                + "\"sex\":\"FEMALE\","
-//                + "\"statuses\":[\"worker\",\"married\"]}";
-//        final Person personMod = gson.fromJson(personJson, Person.class);
-//        System.out.println(personMod);
+        /**
+         * от "final Gson1 gson = new GsonBuilder().create()";
+         * временный код, для другого задания
+         * до System.out.println(personMod);
+         */
+        final Gson gson = new GsonBuilder().create();
+        System.out.println(gson.toJson(person));
+
+        final String personJson = "{"
+                + "\"name\":\"Mary\","
+                + "\"age\":43,"
+                + "\"contact\":{\"zipCode\":614111,\"phone\":\"8(902)80-82-651\"},"
+                + "\"isSpeakEnglish\":true,"
+                + "\"sex\":\"FEMALE\","
+                + "\"statuses\":[\"worker\",\"married\"]}";
+        final Person personMod = gson.fromJson(personJson, Person.class);
+        System.out.println(personMod);
 
         String xml = "";
         JAXBContext context = JAXBContext.newInstance(Person.class);

@@ -24,7 +24,7 @@ public class TableEditor implements AutoCloseable {
             e.printStackTrace();
         }
         try (InputStream io = TableEditor.class.getClassLoader().
-                getResourceAsStream("app.properties")) {
+                getResourceAsStream("app1.properties")) {
             properties.load(io);
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,10 +48,13 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
+    /**
+     * System.out.println(getTableScheme(connection, tableName)); //временная строка
+     */
     private void exectStatement(String sql, String tableName) {
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
-            System.out.println(getTableScheme(connection, tableName)); //временная строка
+            System.out.println(getTableScheme(connection, tableName));
         } catch (Exception e) {
             e.printStackTrace();
         }
