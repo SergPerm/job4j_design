@@ -42,7 +42,7 @@ public class ReportEngineTest {
                 .append(employer.getName()).append(";")
                 .append(employer.getHired()).append(";")
                 .append(employer.getFired()).append(";")
-                .append("1000,00").append(";")
+                .append("1000.00").append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
