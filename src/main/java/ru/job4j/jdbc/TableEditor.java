@@ -49,7 +49,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     /**
-     * System.out.println(getTableScheme(connection, tableName)); //временная строка
+     * System.out.println(getTableScheme(connection, tableName)); - временная строка
      */
     private void exectStatement(String sql, String tableName) {
         try (Statement statement = connection.createStatement()) {

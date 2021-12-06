@@ -12,7 +12,7 @@ import ru.job4j.io.search.ArgsName;
  *   public void whenGetFirstReorder() {
  *       ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx=512"});
  *       assertThat(jvm.get("Xmx"), is("512")); }
- *    Test(expected = IllegalArgumentException.//class)
+ *    Test(expected = IllegalArgumentException.Class)
  *   public void whenWrongSomeArgument() {
  *       ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx="});
  *   }
