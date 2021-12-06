@@ -19,7 +19,7 @@ public class ArgsName {
         for (String arg : args) {
             String[] tmp = arg.split("=");
             if (tmp.length < 2) {
-                throw new IllegalArgumentException(String.format("Wrong parameter toGroshi : %s", arg));
+                throw new IllegalArgumentException(String.format("Wrong parameter format : %s", arg));
             }
             values.put(tmp[0], tmp[1]);
         }
