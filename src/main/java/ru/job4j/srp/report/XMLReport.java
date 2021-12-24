@@ -32,7 +32,7 @@ public class XMLReport implements Report {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(new Employees(employees), writer);
             xml = writer.getBuffer().toString();
-        } catch (IOException | JAXBException e ) {
+        } catch (IOException | JAXBException e) {
             e.printStackTrace();
         }
         return xml;

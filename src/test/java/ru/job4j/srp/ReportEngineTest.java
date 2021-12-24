@@ -132,7 +132,7 @@ public class ReportEngineTest {
                 + "        <name>Petr</name>" + "\n"
                 + "        <salary>120.0</salary>" + "\n"
                 + "    </employees>" + "\n"
-                + "</xmlReport>"+ "\n"
+                + "</xmlReport>" + "\n"
                 + "";
         assertThat(engine.generate(em -> true), is(text));
     }
