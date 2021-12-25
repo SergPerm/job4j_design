@@ -114,25 +114,26 @@ public class ReportEngineTest {
         store.add(serg);
         store.add(petr);
         Report engine = new XMLReport(store);
-        String text = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "\n"
-                + "<xmlReport>" + "\n"
-                + "    <employees>" + "\n"
+        String sls = System.lineSeparator();
+        String text = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + sls
+                + "<xmlReport>" + sls
+                + "    <employees>" + sls
                 + String.format("        <fired>%s</fired>",
-                        formatter.format(serg.getFired().getTime())) + "\n"
+                        formatter.format(serg.getFired().getTime())) + sls
                 + String.format("        <hired>%s</hired>",
-                        formatter.format(serg.getHired().getTime())) + "\n"
-                + "        <name>Serg</name>" + "\n"
-                + "        <salary>100.0</salary>" + "\n"
-                + "    </employees>" + "\n"
-                + "    <employees>" + "\n"
+                        formatter.format(serg.getHired().getTime())) + sls
+                + "        <name>Serg</name>" + sls
+                + "        <salary>100.0</salary>" + sls
+                + "    </employees>" + sls
+                + "    <employees>" + sls
                 + String.format("        <fired>%s</fired>",
-                        formatter.format(petr.getFired().getTime())) + "\n"
+                        formatter.format(petr.getFired().getTime())) + sls
                 + String.format("        <hired>%s</hired>",
-                        formatter.format(petr.getHired().getTime())) + "\n"
-                + "        <name>Petr</name>" + "\n"
-                + "        <salary>120.0</salary>" + "\n"
-                + "    </employees>" + "\n"
-                + "</xmlReport>" + "\n"
+                        formatter.format(petr.getHired().getTime())) + sls
+                + "        <name>Petr</name>" + sls
+                + "        <salary>120.0</salary>" + sls
+                + "    </employees>" + sls
+                + "</xmlReport>" + sls
                 + "";
         assertThat(engine.generate(em -> true), is(text));
     }
