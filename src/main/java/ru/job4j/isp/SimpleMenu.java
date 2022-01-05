@@ -113,8 +113,12 @@ public class SimpleMenu<K> implements Menu<K>, Printing<K> {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Node<?> node = (Node<?>) o;
             return key.equals(node.key);
         }
